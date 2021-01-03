@@ -1,0 +1,196 @@
+.container-detail {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-detail .header {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--color-background-primary);
+    border: 1px solid var(--color-border-primary);
+    padding: 10px 40px;
+}
+
+.container-detail .header .block {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 10px 0px;
+}
+
+.container-detail .header .block button {
+    min-width: calc(90px + 1rem);
+    min-height: 30px;
+
+    border: none;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 0.9rem;
+}
+
+.container-detail .main {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+
+    overflow-y: auto;
+}
+
+.container-detail .main .book-content {
+    min-width: 340px;
+    max-width: 450px;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    background: #ffffff;
+    border: 1px solid var(--color-border-primary);
+    box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px 20px;
+}
+
+.container-detail .main .book-content .block {
+    width: 100%;
+    margin: 7px 0px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+.container-detail .main .book-content #block-description {
+    border: none;
+}
+
+.container-detail .main .book-content .block .tag {
+    font-size: var(--size-text-secondary);
+    color: var(--color-text-secondary);
+    font-weight: 700;
+}
+
+.container-detail .main .book-content .block .value {
+    max-width: 250px;
+
+    word-wrap: break-word;
+    font-size: var(--size-text-primary);
+    color: var(--color-text-secondary);
+    font-weight: bold;
+}
+
+.container-detail .main .book-content .block .description {
+    word-wrap: break-word;
+    font-size: var(--size-text-primary);
+    color: var(--color-text-secondary);
+}
+
+.container-detail .book-content .form-rank {
+    margin-top: 20px;
+    border: 1px solid var(--color-border-primary);
+    padding: 10px;
+    background-color: #eeeeee;
+}
+
+.container-detail .book-content .form-rank .title {
+    width: 100%;
+
+    font-size: var(--size-title-secondary);
+    color: var(--color-text-secondary);
+    font-family: Poppins;
+    font-weight: 700;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.container-detail .book-content .form-rank .block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    border: none;
+}
+
+.container-detail .book-content .form-rank .block label {
+    font-size: var(--size-text-secondary);
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    margin: 10px 0px;
+}
+
+.container-detail .book-content .form-rank .block textarea {
+    width: 280px;
+    height: 30px;
+    resize: none;
+}
+
+.container-detail .book-content .form-rank button {
+    min-width: calc(90px + 1rem);
+    min-height: 30px;
+
+    margin-top: 25px;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.container-detail .main .comments-container {
+    width: 90vw;
+
+    background: #ffffff;
+    border: 1px solid var(--color-border-primary);
+    border-radius: 15px;
+    margin: 20px 0px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-detail .main .comments-container .comment {
+    width: 100%;
+
+    padding: 20px 0px;
+    margin: 10px 0px;
+    border-bottom: 1px solid var(--color-border-primary);
+}
+
+.container-detail .main .comments-container .comment p {
+    font-size: var(--size-text-primary);
+    color: var(--color-text-secondary);
+    text-transform: capitalize;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+.main .comments-container .comment .comment-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .comments-container .comment .comment-header span {
+    font-size: var(--size-text-primary);
+    color: var(--size-title-secondary);
+    margin: 0px 10px;
+}

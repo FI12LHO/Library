@@ -27,6 +27,7 @@ class Book extends Model
      * @var array
      */
     protected $fillable = [
+        'id_user',
         'title',
         'author',
         'publishing_company',
@@ -45,9 +46,11 @@ class Book extends Model
         $books = [];
 
         foreach ($tmp_array as $book) {
-            $rate = Rate::getRatingWithIdBook($book -> id);
+            $rate = Rate::getAvgRatingWithIdBook($book -> id);
 
             $new_array = [
+                'id_book' => $book -> id,
+                'id_user' => $book -> id_user,
                 'title' => $book -> title,
                 'author' => $book -> author,
                 'publishing_company' => $book -> publishing_company,
@@ -64,9 +67,9 @@ class Book extends Model
     }
 
     /**
-     * Metodo responsavel por buscar e retornar um unico livro.
+     * Metodo responsavel por buscar e retornar um livro.
      * @param id - Valor que condiciona a busca.
-     * @return array - Dados do livro caso exista.
+     * @return array - Dados dos livros caso exista.
      */
     static function getBookWithId($id) {
         $exits = DB::table('books') -> where('id', $id) -> exists();
@@ -79,6 +82,16 @@ class Book extends Model
             return array(['status' => 'book not found']);
 
         }
+    }
+
+    /**
+     * Metodo responsavel por buscar e retornar lista de livros.
+     * @param id - Valor que condiciona a busca.
+     * @return array - Dados dos livros caso exista.
+     */
+    static function getBooksWithIdUser($id) {
+        $book = DB::table('books') -> where('id_user', $id) -> get();
+        return $book;
     }
 
     /**
@@ -106,11 +119,11 @@ class Book extends Model
      * @param id - Valor que condiciona qual registro sera afetado.
      * @return array
      */
-    static function deleteBookWithId($id) {
+    static function deleteBookWithId($id, $id_book) {
         $exits = DB::table('books') -> where('id', $id) -> exists();
 
         if ($exits) {
-            DB::table('books') -> where('id', $id) -> delete();
+            DB::table('books') -> where('id', $id) -> where('id_book', $id_book) -> delete();
             return array(['status' => 'book deleted']);
 
         } else {

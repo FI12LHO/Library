@@ -21,6 +21,7 @@ class rateController extends Controller
         $validated_data = $request -> validate([
             'id_user' => ['required', 'integer'],
             'id_book' => ['required', 'integer'],
+            'comment' => ['required'],
             'value' => ['required'],
         ]);
             
@@ -28,6 +29,7 @@ class rateController extends Controller
         $data = [
             'id_user' => $post['id_user'],
             'id_book' => $post['id_book'],
+            'comment' => $post['comment'],
             'value' => $post['value'],
         ];
 
@@ -55,12 +57,14 @@ class rateController extends Controller
         $validated_data = $request -> validate([
             'id_user' => ['required', 'integer'],
             'id_book' => ['required', 'integer'],
+            'comment' => ['required'],
             'value' => ['required'],
         ]);
             
         $post = $request -> post();
         $data = [
             'value' => $post['value'],
+            'comment' => $post['comment'],
         ];
 
         $id_user = $post['id_user'];
@@ -76,8 +80,7 @@ class rateController extends Controller
      * @param id_book - Valor que condiciona qual registro sera afetado.
      * @return json
      */
-    public function destroy($id_user, $id_book) {
-        $rate = Rate::deleteRateWithIdUserAndIdBook($id_user, $id_book);
-        return json_encode($rate);
+    public function destroy() {
+
     }
 }

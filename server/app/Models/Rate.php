@@ -29,8 +29,29 @@ class Rate extends Model
         'id',
         'id_book',
         'id_user',
+        'author',
         'value',
+        'comment',
     ];
+
+    /**
+     * Metodo responsavel por buscar e retornar a media dos dados de avaliação que satisfazem a condição.
+     * @param id_book - Valor que condiciona a busca.
+     * @return double|string - Media dos valores cadastrados caso exista.
+     */
+    static function getAvgRatingWithIdBook($id_book) {
+        $exits = DB::table('ratings') -> where('id_book', $id_book) -> exists();
+
+        if ($exits) {
+            $rate = DB::table('ratings') -> where('id_book', $id_book) -> avg('value');
+            $rate = number_format($rate, 1, '.', ' ');
+            return $rate;
+
+        } else {
+            return 'not rated';
+
+        }
+    }
 
     /**
      * Metodo responsavel por buscar os dados de avaliação que satisfazem a condição.
@@ -38,17 +59,8 @@ class Rate extends Model
      * @return double|string - Media dos valores cadastrados caso exista.
      */
     static function getRatingWithIdBook($id_book) {
-        $exits = DB::table('ratings') -> where('id_book', $id_book) -> exists();
-
-        if ($exits) {
-            $rate = DB::table('ratings') -> where('id_book', $id_book) -> avg('value');
-            $rate = \number_format($rate, 1, '.', ' ');
-            return $rate;
-
-        } else {
-            return 'not rated';
-
-        }
+        $rate = DB::table('ratings') -> where('id_book', $id_book) -> get();
+        return $rate;
     }
 
     /**

@@ -30,6 +30,7 @@ class bookController extends Controller
      */
     public function create(Request $request) {
         $validated_data = $request -> validate([
+            'id_user' => ['required', 'integer'],
             'title' => ['required', 'max:255'],
             'author' => ['required', 'max:255'],
             'publishing_company' => ['required', 'max:255'],
@@ -40,6 +41,7 @@ class bookController extends Controller
             
         $post = $request -> post();
         $data = [
+            'id_user' => $post['id_user'],
             'title' => $post['title'],
             'author' => $post['author'],
             'publishing_company' => $post['publishing_company'],
@@ -54,12 +56,17 @@ class bookController extends Controller
     }
 
     /**
-     * Metodo responsavel por buscar e retornar um livro correspondente ha requisição.
-     * @param id - Chave primaria do livro que condiciona a busca.
-     * @return json - Dados do livro caso exista.
+     * Metodo responsavel por buscar e retornar uma lista de livros correspondente ha condição.
+     * @param id - Chave primaria do usuario que condiciona a busca.
+     * @return json - Dados dos livros caso exista.
      */
     public function show($id) {
         $book = Book::getBookWithId($id);
+        return json_encode($book);
+    }
+
+    public function showMyBooks($id) {
+        $book = Book::getBooksWithIdUser($id);
         return json_encode($book);
     }
 
@@ -71,6 +78,7 @@ class bookController extends Controller
      */
     public function edit(Request $request, $id) {
         $validated_data = $request -> validate([
+            'id_user' => ['required', 'integer'],
             'title' => ['required', 'max:255'],
             'author' => ['required', 'max:255'],
             'publishing_company' => ['required', 'max:255'],
@@ -78,10 +86,10 @@ class bookController extends Controller
             'num_pages' => ['required', 'integer'],
             'review' => ['required'],
         ]);
-
+            
         $post = $request -> post();
-
         $data = [
+            'id_user' => $post['id_user'],
             'title' => $post['title'],
             'author' => $post['author'],
             'publishing_company' => $post['publishing_company'],
@@ -100,8 +108,18 @@ class bookController extends Controller
      * @param id - Chave primaria do livro que condiciona o registro afetado.
      * @return json
      */
-    public function destroy($id) {
-        $book = Book::deleteBookWithId($id);
+    public function destroy() {
+        $validated_data = $request -> validate([
+            'id_user' => ['required'],
+            'id_book' => ['required'],
+        ]);
+            
+        $post = $request -> post();
+
+        $id_user = $post['id_user'];
+        $id_book = $post['id_book'];
+
+        $book = Book::deleteBookWithId($id_user, $id_book);
         return json_encode($book);
     }
 }

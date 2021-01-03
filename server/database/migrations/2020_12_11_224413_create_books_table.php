@@ -15,6 +15,7 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table -> id();
+            $table -> string('id_user');
             $table -> string('title', 255);
             $table -> string('author', 255);
             $table -> string('publishing_company', 255);

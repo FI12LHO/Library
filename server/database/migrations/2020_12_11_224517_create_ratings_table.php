@@ -18,6 +18,8 @@ class CreateRatingsTable extends Migration
             $table -> integer('id_book');
             $table -> integer('id_user');
             $table -> double('value');
+            $table -> string('author');
+            $table -> text('comment');
             $table -> timestamps();
         });
     }
