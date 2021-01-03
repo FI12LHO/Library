@@ -33,11 +33,11 @@ export default function Gallery() {
 
     async function deleteBook(id_book) {
         const data = {
-            'id_user': id,
+            'id_user': localStorage.getItem('id'),
             'id_book': id_book,
         };
 
-        await Api.post(`/book/destroy`, data);
+        await Api.post('/book/destroy', data).then(res => console.log(res.data));
     }
 
     function render(book) {

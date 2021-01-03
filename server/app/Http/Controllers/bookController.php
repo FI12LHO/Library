@@ -108,12 +108,11 @@ class bookController extends Controller
      * @param id - Chave primaria do livro que condiciona o registro afetado.
      * @return json
      */
-    public function destroy() {
+    public function destroy(Request $request) {
         $validated_data = $request -> validate([
             'id_user' => ['required'],
             'id_book' => ['required'],
         ]);
-            
         $post = $request -> post();
 
         $id_user = $post['id_user'];

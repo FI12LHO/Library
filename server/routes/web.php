@@ -11,7 +11,7 @@ Route::group(['middleware' => 'cors', 'prefix' => 'user'], function () {
 });
 
 Route::group(['middleware' => 'cors', 'prefix' => 'book'], function () {
-    Route::get('/{field?}', [bookController::class, 'index']);
+    Route::get('/', [bookController::class, 'index']);
     Route::post('/create', [bookController::class, 'create']);
     Route::get('/show/{id}', [bookController::class, 'show']);
     Route::get('/show/my/{id}', [bookController::class, 'showMyBooks']);

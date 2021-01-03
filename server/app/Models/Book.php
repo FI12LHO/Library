@@ -120,10 +120,10 @@ class Book extends Model
      * @return array
      */
     static function deleteBookWithId($id, $id_book) {
-        $exits = DB::table('books') -> where('id', $id) -> exists();
+        $exits = DB::table('books') -> where('id_user', $id) -> where('id', $id_book) -> exists();
 
         if ($exits) {
-            DB::table('books') -> where('id', $id) -> where('id_book', $id_book) -> delete();
+            DB::table('books') -> where('id', $id_book) -> where('id_user', $id) -> delete();
             return array(['status' => 'book deleted']);
 
         } else {
